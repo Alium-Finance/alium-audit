@@ -1,11 +1,37 @@
 {
   "name": "@alium-official/nft",
+  "private": true,
   "description": "Aliumswap NFT Interface",
   "homepage": ".",
-  "private": true,
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "dotenv -e .env.production react-scripts build",
+    "build:dev": "dotenv -e .env.development react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
+    "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "resolutions": {
+    "@walletconnect/web3-provider": "1.1.1-alpha.0"
+  },
   "dependencies": {
     "@alium-official/sdk": "^1.1.11",
-    "@alium-official/uikit": "^0.11.49",
+    "@alium-official/uikit": "^0.11.52",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
@@ -80,34 +106,10 @@
     "cypress": "^4.11.0",
     "eslint": "^7.2.0",
     "prettier": "^2.1.2",
+    "prettier-plugin-organize-imports": "^2.0.0",
+    "prettier-plugin-packagejson": "^2.2.11",
     "qs": "^6.9.4",
     "serve": "^11.3.0",
     "start-server-and-test": "^1.11.0"
-  },
-  "resolutions": {
-    "@walletconnect/web3-provider": "1.1.1-alpha.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "dotenv -e .env.production react-scripts build",
-    "build:dev": "dotenv -e .env.development react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "license": "GPL-3.0-or-later"
+  }
 }
