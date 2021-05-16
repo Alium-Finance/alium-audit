@@ -1,0 +1,60 @@
+name: dev
+
+on:
+  push:
+    branches:
+      - develop
+      - master
+  pull_request:
+    branches:      
+      - develop
+      - master
+      
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2.1.1
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install global cli utils
+        run: yarn global add dotenv-cli
+      - name: Install dependincies
+        run: yarn install
+      - name: Build project
+        run: yarn build      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build
+          path: build
+
+  deploy_dev:
+    needs: build
+    if: github.ref == 'refs/heads/develop'
+    runs-on: [self-hosted, dev]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: build
+      - run: cp -r ./ ~/$GITHUB_REPOSITORY
+
+  deploy_stage:
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    runs-on: [self-hosted, stage]
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: build
+      - run: cp -r ./ ~/$GITHUB_REPOSITORY
