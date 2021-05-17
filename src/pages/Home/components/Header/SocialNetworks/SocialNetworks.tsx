@@ -1,26 +1,27 @@
+import { externalLinks } from '@alium-official/uikit'
 import React from 'react'
 import styled from 'styled-components'
 import first from '../../../images/ghub.svg'
+import fourth from '../../../images/med.svg'
 import second from '../../../images/tel.svg'
 import third from '../../../images/twi.svg'
-import fourth from '../../../images/med.svg'
 
 const header = [
   {
     img: first,
-    link: 'https://github.com/Aliumswap',
+    link: externalLinks.github,
   },
   {
     img: second,
-    link: 'https://t.me/aliumswap_official',
+    link: externalLinks.telegram,
   },
   {
     img: third,
-    link: 'https://twitter.com/AliumSwap',
+    link: externalLinks.twitter,
   },
   {
     img: fourth,
-    link: 'https://medium.com/@aliumswap',
+    link: externalLinks.medium,
   },
 ].map((item, i) => ({ ...item, id: i }))
 
@@ -40,16 +41,16 @@ const Wrapper = styled.div`
     padding: 0 4px;
     height: 52px;
     width: 52px;
-    border: 1px solid #EBEDF9;
+    border: 1px solid #ebedf9;
     border-radius: 6px;
     & .header-links-item__img {
       width: 100%;
       height: 100%;
     }
   }
-  
+
   & .header-links-item:hover {
-    background-color: #EBEDF9;
+    background-color: #ebedf9;
   }
 
   @media screen and (max-width: 640px) {
@@ -67,15 +68,14 @@ const Wrapper = styled.div`
       width: 100%;
     }
   }
- 
 `
 
 const SocialNetworks = () => {
   const openInNewTab = (url) => {
-    if (!url) return;
-    const win = window.open(header[url].link, "_blank");
-    win?.focus();
-  };
+    if (!url) return
+    const win = window.open(header[url].link, '_blank')
+    win?.focus()
+  }
 
   const handleClick = (e) => {
     openInNewTab(e.currentTarget.name)
@@ -92,4 +92,4 @@ const SocialNetworks = () => {
   )
 }
 
-export default SocialNetworks;
+export default SocialNetworks

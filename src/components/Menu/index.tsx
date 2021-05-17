@@ -1,11 +1,11 @@
-import React from 'react'
-import { Menu as UikitMenu, MenuEntry } from '@alium-official/uikit'
-import { useWeb3React } from '@web3-react/core'
-import { useTranslation } from 'react-i18next'
-import useTheme from 'hooks/useTheme'
-import useAuth from 'hooks/useAuth'
-import { useCurrencyBalance } from 'state/wallet/hooks'
 import { ETHER } from '@alium-official/sdk'
+import { externalLinks, Menu as UikitMenu, MenuEntry } from '@alium-official/uikit'
+import { useWeb3React } from '@web3-react/core'
+import useAuth from 'hooks/useAuth'
+import useTheme from 'hooks/useTheme'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { useCurrencyBalance } from 'state/wallet/hooks'
 
 const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ...props }) => {
   const { t } = useTranslation()
@@ -37,7 +37,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
     {
       label: 'Private Round NFTs',
       icon: 'PrivateRoundIcon',
-      href: '/'
+      href: '/',
     },
     {
       label: 'Analytics',
@@ -67,7 +67,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         // },
         {
           label: 'GitHub',
-          href: 'https://github.com/Aliumswap',
+          href: externalLinks.github,
         },
         {
           label: 'Docs',
@@ -75,7 +75,7 @@ const Menu: React.FC<{ loginBlockVisible?: boolean }> = ({ loginBlockVisible, ..
         },
         {
           label: 'Blog',
-          href: 'https://medium.com/@aliumswap',
+          href: externalLinks.medium,
         },
       ],
     },
